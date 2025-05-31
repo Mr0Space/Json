@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Загрузка JSON</title>
+</head>
+<body>
+  <h1>Информация о продукте</h1>
+  <div id="product-info"></div>
+
+  <script>
+    fetch('http://localhost:3000/api/product')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('product-info').innerHTML = `
+          <p>Название: ${data.name}</p>
+          <p>Цена: ${data.price} руб.</p>
+          <p>В наличии: ${data.inStock ? 'Да' : 'Нет'}</p>
+        `;
+      })
+      .catch(error => console.error('Ошибка:', error));
+  </script>
+</body>
+</html>
